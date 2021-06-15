@@ -23,7 +23,7 @@ public class Instance {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long instance_id;
+	private Long instanceId;
 	
 	@Column(name="name", nullable=false)
 	private String name;

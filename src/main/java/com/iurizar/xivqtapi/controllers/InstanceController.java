@@ -25,8 +25,8 @@ public class InstanceController {
 	}
 	
 	@RequestMapping(value= "{instance_id}")
-	public ResponseEntity<Instance> getInstaceById(@PathVariable("instance_id") Long instance_id) {
-		Optional<Instance> optionalInstance = instanceDAO.findById(instance_id);
+	public ResponseEntity<Instance> getInstanceById(@PathVariable("instance_id") Long instanceId) {
+		Optional<Instance> optionalInstance = instanceDAO.findById(instanceId);
 		if(optionalInstance.isPresent()) {
 			return ResponseEntity.ok(optionalInstance.get());
 		} else {
@@ -34,5 +34,13 @@ public class InstanceController {
 		}
 	}
 	
-	
+	@RequestMapping(value= "{instance_name}")
+	public ResponseEntity<Instance> getInstanceByName(@PathVariable("instance_name") String name) {
+		Optional<Instance> optionalInstance = instanceDAO.findByName(name);
+		if(optionalInstance.isPresent()) {
+			return ResponseEntity.ok(optionalInstance.get());
+		} else {
+			return ResponseEntity.noContent().build();
+		}
+	}
 }
