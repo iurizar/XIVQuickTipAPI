@@ -1,5 +1,7 @@
 package com.iurizar.xivqtapi.dao;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.iurizar.xivqtapi.models.Instance;

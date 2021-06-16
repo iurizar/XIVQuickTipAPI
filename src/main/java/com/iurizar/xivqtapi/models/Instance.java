@@ -12,11 +12,13 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name="instance")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Instance {
 	//Properties
@@ -45,4 +47,16 @@ public class Instance {
 	
 	@Column(name="patch_num", nullable=false)
 	private String patch_num;
+
+	public Instance(String name, String tier, String difficulty, List<Encounter> encounters, String expansion,
+			String patch_name, String patch_num) {
+		super();
+		this.name = name;
+		this.tier = tier;
+		this.difficulty = difficulty;
+		this.encounters = encounters;
+		this.expansion = expansion;
+		this.patch_name = patch_name;
+		this.patch_num = patch_num;
+	}
 }

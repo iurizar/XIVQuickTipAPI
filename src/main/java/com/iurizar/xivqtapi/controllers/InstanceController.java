@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iurizar.xivqtapi.dao.InstanceDAO;
@@ -24,7 +26,7 @@ public class InstanceController {
 		return ResponseEntity.ok(instances);
 	}
 	
-	@RequestMapping(value= "{instance_id}")
+	@RequestMapping(value= "/{instance_id}", method = RequestMethod.GET)
 	public ResponseEntity<Instance> getInstanceById(@PathVariable("instance_id") Long instanceId) {
 		Optional<Instance> optionalInstance = instanceDAO.findById(instanceId);
 		if(optionalInstance.isPresent()) {
@@ -34,8 +36,8 @@ public class InstanceController {
 		}
 	}
 	
-	@RequestMapping(value= "{instance_name}")
-	public ResponseEntity<Instance> getInstanceByName(@PathVariable("instance_name") String name) {
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<Instance> getInstanceByName(@RequestParam(value="name") String name) {
 		Optional<Instance> optionalInstance = instanceDAO.findByName(name);
 		if(optionalInstance.isPresent()) {
 			return ResponseEntity.ok(optionalInstance.get());

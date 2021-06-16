@@ -12,12 +12,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="encounter")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Encounter {
 	
@@ -34,5 +38,13 @@ public class Encounter {
 	
 	@ManyToOne
 	@JoinColumn(name="instance_id",nullable=false)
+	@JsonIgnore
 	private Instance instance;
+
+	public Encounter(String name, List<Mechanic> mechanics, Instance instance) {
+		super();
+		this.name = name;
+		this.mechanics = mechanics;
+		this.instance = instance;
+	}
 }
