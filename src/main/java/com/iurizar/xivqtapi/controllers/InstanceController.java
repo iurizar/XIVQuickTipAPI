@@ -37,8 +37,8 @@ public class InstanceController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Instance> getInstanceByName(@RequestParam(value="name") String name) {
-		Optional<Instance> optionalInstance = instanceDAO.findByName(name);
+	public ResponseEntity<List<Instance>> getInstanceByName(@RequestParam(value="name") String name) {
+		Optional<List<Instance>> optionalInstance = instanceDAO.findByNameContainingIgnoreCase(name);
 		if(optionalInstance.isPresent()) {
 			return ResponseEntity.ok(optionalInstance.get());
 		} else {
